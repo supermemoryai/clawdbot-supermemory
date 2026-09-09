@@ -9,6 +9,10 @@
 	],
 	"contracts": {
 		"tools": [
+			"supermemory-search",
+			"supermemory-save",
+			"supermemory-forget",
+			"supermemory-profile",
 			"supermemory_search",
 			"supermemory_store",
 			"supermemory_forget",
