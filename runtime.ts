@@ -111,9 +111,16 @@ export function buildMemoryRuntime(
 export function buildPromptSection(params: {
 	availableTools: Set<string>
 }): string[] {
-	const hasSearch = params.availableTools.has("supermemory_search")
-	const hasStore = params.availableTools.has("supermemory_store")
-	if (!hasSearch && !hasStore) return []
+	// Prefer the hyphenated names; fall back to the deprecated snake_case ones.
+	const pick = (hyphen: string, snake: string): string | null => {
+		if (params.availableTools.has(hyphen)) return hyphen
+		if (params.availableTools.has(snake)) return snake
+		return null
+	}
+
+	const searchTool = pick("supermemory-search", "supermemory_search")
+	const storeTool = pick("supermemory-save", "supermemory_store")
+	if (!searchTool && !storeTool) return []
 
 	const lines: string[] = [
 		"## Memory (Supermemory)",
@@ -123,14 +130,14 @@ export function buildPromptSection(params: {
 		"",
 	]
 
-	if (hasSearch) {
+	if (searchTool) {
 		lines.push(
-			"Use supermemory_search to look up prior conversations, preferences, and facts.",
+			`Use ${searchTool} to look up prior conversations, preferences, and facts.`,
 		)
 	}
-	if (hasStore) {
+	if (storeTool) {
 		lines.push(
-			"Use supermemory_store to save important information the user asks you to remember.",
+			`Use ${storeTool} to save important information the user asks you to remember.`,
 		)
 	}
 
