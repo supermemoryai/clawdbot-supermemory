@@ -51,12 +51,18 @@ Everything runs in the cloud. Supermemory handles extraction, deduplication, and
 
 The AI uses these tools autonomously. With custom container tags enabled, all tools support a `containerTag` parameter for routing to specific containers.
 
-| Tool                  | Description                                            |
-| --------------------- | ------------------------------------------------------ |
-| `supermemory_store`   | Save information to memory.                            |
-| `supermemory_search`  | Search memories by query.                              |
-| `supermemory_forget`  | Delete a memory by query or ID.                        |
-| `supermemory_profile` | View user profile (persistent facts + recent context). |
+| Tool                    | Description                                            |
+| ----------------------- | ------------------------------------------------------ |
+| `supermemory-save`      | Save information to memory.                            |
+| `supermemory-search`    | Search memories by query.                              |
+| `supermemory-forget`    | Delete a memory by query or ID.                        |
+| `supermemory-profile`   | View user profile (persistent facts + recent context). |
+
+The hyphenated names above are the standard across all Supermemory plugins. The
+older `supermemory_store`, `supermemory_search`, `supermemory_forget` and
+`supermemory_profile` names still work and resolve to the same tools, but they
+are deprecated and will be removed in 3.0. Update any tool allowlists to the
+hyphenated names.
 
 ## CLI Commands
 

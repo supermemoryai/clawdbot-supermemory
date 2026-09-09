@@ -7,7 +7,12 @@ import type { SupermemoryClient } from "../client.ts"
 import { DEFAULT_BASE_URL } from "../config.ts"
 import { log } from "../logger.ts"
 
+// Hyphenated names are current; snake_case is deprecated and removed in 3.0.
 const SUPERMEMORY_TOOL_NAMES = [
+	"supermemory-save",
+	"supermemory-search",
+	"supermemory-forget",
+	"supermemory-profile",
 	"supermemory_store",
 	"supermemory_search",
 	"supermemory_forget",
